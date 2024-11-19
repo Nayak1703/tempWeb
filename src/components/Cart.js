@@ -4,7 +4,7 @@ import {
   ShoppingCart,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-import { Button, IconButton, Stack, Typography } from "@mui/material";
+import { Button, IconButton, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -75,10 +75,10 @@ export const getTotalCartValue = (items = []) => {
     .reduce((total, n) => total + n, 0);
 };
 
-const getTotalItems = ((items=[])=> {
+const getTotalItems = (items = []) => {
   if (!items.length) return 0;
-  return items.reduce((total,item)=> total + item.qty, 0)
-})
+  return items.reduce((total, item) => total + item.qty, 0);
+};
 
 // TODO: CRIO_TASK_MODULE_CHECKOUT - Implement function to return total cart quantity
 /**
@@ -260,11 +260,7 @@ const Cart = ({ products, items = [], isReadOnly = false, handleQuantity }) => {
         </Box>
 
         {!isReadOnly && (
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            className="cart-footer"
-          >
+          <Box display="flex" justifyContent="flex-end" className="cart-footer">
             <Button
               color="primary"
               variant="contained"
@@ -278,24 +274,24 @@ const Cart = ({ products, items = [], isReadOnly = false, handleQuantity }) => {
         )}
       </Box>
       {isReadOnly && (
-        <Box className="cart" sx={{p: 2}}>
-          	<h2>Order Details</h2>
-            <Box className="cart-row">
-              <p>Products</p>
-              <p>{getTotalItems(items)}</p>
-            </Box>
-            <Box className="cart-row">
-              <p>Subtotal</p>
-              <p>${getTotalCartValue(items)}</p>
-            </Box>
-            <Box className="cart-row">
-              <p>Shipping Charges</p>
-              <p>$0</p>
-            </Box>
-            <Box className="cart-row">
-              <h3>Total</h3>
-              <h3>${getTotalCartValue(items)}</h3>
-            </Box>
+        <Box className="cart" sx={{ p: 2 }}>
+          <h2>Order Details</h2>
+          <Box className="cart-row">
+            <p>Products</p>
+            <p>{getTotalItems(items)}</p>
+          </Box>
+          <Box className="cart-row">
+            <p>Subtotal</p>
+            <p>${getTotalCartValue(items)}</p>
+          </Box>
+          <Box className="cart-row">
+            <p>Shipping Charges</p>
+            <p>$0</p>
+          </Box>
+          <Box className="cart-row">
+            <h3>Total</h3>
+            <h3>${getTotalCartValue(items)}</h3>
+          </Box>
         </Box>
       )}
     </>

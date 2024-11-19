@@ -1,5 +1,4 @@
 import Register from "./components/Register";
-import ipConfig from "./ipConfig.json";
 // importing to add multipage functionality in website
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
